@@ -34,8 +34,6 @@ class Core
      */
     private function initConfig(): void
     {
-
-        //$conf_fn = $this->environment['APP_ENV'] == 'testing' ? 'config-testing.ini' : 'config.ini';
         $conf_fn = __DIR__ . '/../' . 'config.ini';
 
         if (is_file($conf_fn) &&
