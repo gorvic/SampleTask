@@ -33,14 +33,16 @@ class Calculate
             if (!is_null($bin->getCountryEuLocated())) {
                 $transaction['commission'] = self::getCommissionAmount(
                     $transaction['amount'], $transaction['rate'], $bin->getCountryEuLocated());
-                $out = self::out($transaction, $transaction['commission'] . " EUR");
+                //$out = self::out_ex($transaction, $transaction['commission'] . " EUR");
+                $out = self::out($transaction, $transaction['commission']);
             } else {
-                $out = self::out($transaction, "cannot be checked by BIN");
+                //$out = self::out_ex($transaction, "cannot be checked by BIN");
+                $out = self::out($transaction, "NULL");
             }
         } else {
-            $out = self::out($transaction, "currency rate is unknown");
+            //$out = self::out_ex($transaction, "currency rate is unknown");
+            $out = self::out($transaction, "NULL");
         }
-        $out .= "\n";
         return $out;
     }
 
@@ -59,6 +61,11 @@ class Calculate
     }
 
     private static function out(array $transaction, string $commission): string
+    {
+        return $commission . PHP_EOL;
+    }
+
+    private static function out_ex(array $transaction, string $commission): string
     {
         return "'{$transaction['bin']}' {$transaction['amount']} {$transaction['currency']}: {$commission}";
     }
