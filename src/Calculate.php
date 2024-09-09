@@ -57,7 +57,7 @@ class Calculate
     public static function ceiling(float $value, ?int $decimals = null): ?float
     {
         $pow = $decimals ? 10 ** $decimals : 0;
-        return $pow ? ceil((float)$value * $pow . '') / $pow : $value;
+        return $pow ? ceil((float)$value * $pow . '') / $pow : ceil($value . '');
     }
 
     private static function out(array $transaction, string $commission): string
