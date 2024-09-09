@@ -11,14 +11,13 @@ class Calculate
         try {
             $reader = new TextFileReader($data_file);
             while ($row = $reader->read()) {
-                if ($transaction = json_decode($row, true))
-                {
+                if ($transaction = json_decode($row, true)) {
                     echo self::processTransaction($transaction);
                 }
             }
             $reader->close();
         } catch (\Exception $exception) {
-            echo $exception->getMessage()."\n";
+            echo $exception->getMessage() . "\n";
         }
 
     }
@@ -56,7 +55,7 @@ class Calculate
     public static function ceiling(float $value, ?int $decimals = null): ?float
     {
         $pow = $decimals ? 10 ** $decimals : 0;
-        return $pow ? ceil( (float) $value * $pow . '') / $pow : $value;
+        return $pow ? ceil((float)$value * $pow . '') / $pow : $value;
     }
 
     private static function out(array $transaction, string $commission): string

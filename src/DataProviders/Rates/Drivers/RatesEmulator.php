@@ -9,7 +9,9 @@ use Http\Request as HttpRequest;
 class RatesEmulator implements RatesDriverInterface
 {
 
-    public function __construct(?array $config = null) { }
+    public function __construct(?array $config = null)
+    {
+    }
 
     public function request(): RatesResponse
     {

@@ -15,7 +15,7 @@ class BinRequest
 
     public function request(string $bin): BinResponse
     {
-       return $this->getBinDriver()->request($bin);
+        return $this->getBinDriver()->request($bin);
     }
 
     /**

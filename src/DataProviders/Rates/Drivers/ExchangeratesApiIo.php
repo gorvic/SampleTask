@@ -24,6 +24,22 @@ class ExchangeratesApiIo implements RatesDriverInterface
         }
     }
 
+    public function setKey(?string $key = null): self
+    {
+        if ($key) {
+            $this->API_KEY = $key;
+        }
+        return $this;
+    }
+
+    public function setUrl(?string $url = null): self
+    {
+        if ($url) {
+            $this->URL = str_replace('{API_KEY}', $this->API_KEY, $url);
+        }
+        return $this;
+    }
+
     public function request(): RatesResponse
     {
         $result = new RatesResponse();
@@ -38,21 +54,5 @@ class ExchangeratesApiIo implements RatesDriverInterface
             //store to a cache
         }
         return $result;
-    }
-
-    public function setKey(? string $key = null): self
-    {
-        if ($key) {
-            $this->API_KEY = $key;
-        }
-        return $this;
-    }
-
-    public function setUrl(? string $url = null): self
-    {
-        if ($url) {
-            $this->URL = str_replace('{API_KEY}', $this->API_KEY, $url);
-        }
-        return $this;
     }
 }

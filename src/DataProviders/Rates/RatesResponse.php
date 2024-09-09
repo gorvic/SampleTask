@@ -46,9 +46,9 @@ class RatesResponse extends stdClass
 
     public function getRate(string $code): ?float
     {
-        return array_key_exists($code, $this->rates) && (float) $this->rates[$code] > 0
+        return array_key_exists($code, $this->rates) && (float)$this->rates[$code] > 0
             ? $this->rates[$code]
-            : null ;
+            : null;
     }
 
     public function setRate(string $code, float $value): RatesResponse

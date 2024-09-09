@@ -15,7 +15,8 @@ class Response
     protected ?string $content;
     protected ?int $statusCode;
 
-    public function __construct(?int $statusCode, ?string $content, ?array $headers = []) {
+    public function __construct(?int $statusCode, ?string $content, ?array $headers = [])
+    {
         $this->statusCode = $statusCode;
         $this->content = $content;
         $this->headers = $headers;
@@ -32,6 +33,14 @@ class Response
     }
 
     /**
+     * @return bool
+     */
+    public function isAccepted(): bool
+    {
+        return $this->getStatusCode() < 400;
+    }
+
+    /**
      * @return int
      */
     public function getStatusCode(): ?int
@@ -42,18 +51,13 @@ class Response
     /**
      * @return array
      */
-    public function getHeaders(): array {
+    public function getHeaders(): array
+    {
         return $this->headers;
     }
 
-    /**
-     * @return bool
-     */
-    public function isAccepted(): bool {
-        return $this->getStatusCode() < 400;
-    }
-
-    public function __toString(): string {
+    public function __toString(): string
+    {
         return '[Response] HTTP ' . $this->getStatusCode() . ' ' . $this->content;
     }
 }

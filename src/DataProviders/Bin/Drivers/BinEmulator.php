@@ -19,7 +19,7 @@ class BinEmulator implements BinDriverInterface
             '516793' => '{"number":{},"scheme":"mastercard","type":"debit","brand":"Debit Mastercard","country":{"numeric":"440","alpha2":"LT","name":"Lithuania","emoji":"🇱🇹","currency":"EUR","latitude":56,"longitude":24},"bank":{"name":"Swedbank Ab"}}',
             '45417360' => '{"number":{},"scheme":"visa","type":"credit","brand":"Visa Classic","country":{"numeric":"392","alpha2":"JP","name":"Japan","emoji":"🇯🇵","currency":"JPY","latitude":36,"longitude":138},"bank":{"name":"Credit Saison Co., Ltd."}}',
             '4745030' => '{"number":{},"scheme":"visa","type":"debit","brand":"Visa Classic","country":{"numeric":"440","alpha2":"LT","name":"Lithuania","emoji":"🇱🇹","currency":"EUR","latitude":56,"longitude":24},"bank":{"name":"Uab Finansines Paslaugos Contis"}}',
-            //'41417360' => '{"number":null,"country":{},"bank":{}}',
+            '41417360' => '{"number":null,"country":{},"bank":{}}',
             'unknown' => '{"number":null,"country":{},"bank":{}}'
         ];
 

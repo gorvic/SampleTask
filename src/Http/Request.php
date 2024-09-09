@@ -18,10 +18,11 @@ class Request
     private string $_path;
     private array $_headers = [];
 
-    public function __construct(public string|null        $username = null,
-                                public string|null        $password = null,
-                                private HttpDriver        $httpDriver = new FileGetContents(),
-                                private array|false|string $environment = false) {
+    public function __construct(public string|null         $username = null,
+                                public string|null         $password = null,
+                                private HttpDriver         $httpDriver = new FileGetContents(),
+                                private array|false|string $environment = false)
+    {
         $this->environment = $environment ?: getenv();
     }
 
@@ -39,10 +40,11 @@ class Request
      * @param int|null $timeout Timeout in seconds
      * @return HttpResponse Response from the API
      */
-    public function request(string $method, string $uri,
-                            ?array $params = [], ?array $data = [],
-                            ?array $headers = [], ?string $username = null,
-                            ?string $password = null, ?int $timeout = null): HttpResponse {
+    public function request(string  $method, string $uri,
+                            ?array  $params = [], ?array $data = [],
+                            ?array  $headers = [], ?string $username = null,
+                            ?string $password = null, ?int $timeout = null): HttpResponse
+    {
         $username = $username ?: $this->username;
         $password = $password ?: $this->password;
 
@@ -84,38 +86,17 @@ class Request
      * @param string $uri The original request uri
      * @return string BinRequest uri
      */
-    public function buildUri(string $uri): string {
-        return isset(parse_url($uri)['host']) ? $uri : $this->getHost().$this->getPath().$uri;
-    }
-    /**
-     * Retrieve the HttpClient
-     *
-     * @return HttpDriver Current HttpClient
-     */
-    public function getHttpDriver(): HttpDriver {
-        return $this->httpDriver;
+    public function buildUri(string $uri): string
+    {
+        return isset(parse_url($uri)['host']) ? $uri : $this->getHost() . $this->getPath() . $uri;
     }
 
     /**
-     * Sets new HttpClient
-     *
-     * @param HttpDriver $httpDriver
-     * @return $this
+     * @return string
      */
-    public function setHttpDriver(HttpDriver $httpDriver): self {
-        $this->httpDriver = $httpDriver;
-        return $this;
-    }
-
-    /**
-     * @param array $headers
-     * @return Request
-     */
-    public function setHeaders(array $headers): self {
-        foreach ($headers as $key => $value) {
-            $this->_headers[$key] = $value;
-        }
-        return $this;
+    public function getHost(): string
+    {
+        return $this->_host;
     }
 
     /**
@@ -129,6 +110,14 @@ class Request
     }
 
     /**
+     * @return string
+     */
+    public function getPath(): string
+    {
+        return $this->_path;
+    }
+
+    /**
      * @param string $path
      * @return Request
      */
@@ -139,18 +128,36 @@ class Request
     }
 
     /**
-     * @return string
+     * Retrieve the HttpClient
+     *
+     * @return HttpDriver Current HttpClient
      */
-    public function getHost(): string
+    public function getHttpDriver(): HttpDriver
     {
-        return $this->_host;
+        return $this->httpDriver;
     }
 
     /**
-     * @return string
+     * Sets new HttpClient
+     *
+     * @param HttpDriver $httpDriver
+     * @return $this
      */
-    public function getPath(): string
+    public function setHttpDriver(HttpDriver $httpDriver): self
     {
-        return $this->_path;
+        $this->httpDriver = $httpDriver;
+        return $this;
+    }
+
+    /**
+     * @param array $headers
+     * @return Request
+     */
+    public function setHeaders(array $headers): self
+    {
+        foreach ($headers as $key => $value) {
+            $this->_headers[$key] = $value;
+        }
+        return $this;
     }
 }

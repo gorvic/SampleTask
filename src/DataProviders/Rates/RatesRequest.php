@@ -15,24 +15,9 @@ class RatesRequest
         $this->ratesResponse = null;
     }
 
-    /**
-     * @param string $ratesDriver
-     * @param array|null $config
-     * @return RatesRequest
-     */
-    public function setRatesDriver(string $ratesDriver, ?array $config): self
+    public function getRates(): array
     {
-        $ratesDriverClass = '\DataProviders\Rates\Drivers\\' . $ratesDriver;
-        $this->ratesDriver = new $ratesDriverClass($config);
-        return $this;
-    }
-
-    /**
-     * @return RatesDriver
-     */
-    public function getRatesDriver(): RatesDriver
-    {
-        return $this->ratesDriver;
+        return $this->request()->getRates();
     }
 
     public function request(): RatesResponse
@@ -43,9 +28,24 @@ class RatesRequest
         return $this->ratesResponse;
     }
 
-    public function getRates(): array
+    /**
+     * @return RatesDriver
+     */
+    public function getRatesDriver(): RatesDriver
     {
-        return $this->request()->getRates();
+        return $this->ratesDriver;
+    }
+
+    /**
+     * @param string $ratesDriver
+     * @param array|null $config
+     * @return RatesRequest
+     */
+    public function setRatesDriver(string $ratesDriver, ?array $config): self
+    {
+        $ratesDriverClass = '\DataProviders\Rates\Drivers\\' . $ratesDriver;
+        $this->ratesDriver = new $ratesDriverClass($config);
+        return $this;
     }
 
     public function getRate(string $code, ?int $decimals = null): ?float

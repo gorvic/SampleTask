@@ -92,17 +92,6 @@ class BinResponse extends stdClass
         return $this;
     }
 
-    public function getCountryCurrency(): ?string
-    {
-        return $this->country_currency;
-    }
-
-    public function setCountryCurrency(?string $country_currency): BinResponse
-    {
-        $this->country_currency = $country_currency;
-        return $this;
-    }
-
     private function isCountryEuLocated(?string $code): ?bool
     {
         $eu_codes = [
@@ -134,7 +123,18 @@ class BinResponse extends stdClass
             'SI',
             'SK'
         ];
-        return in_array($code, $eu_codes) ? true : ($code ? false : null) ;
+        return in_array($code, $eu_codes) ? true : ($code ? false : null);
+    }
+
+    public function getCountryCurrency(): ?string
+    {
+        return $this->country_currency;
+    }
+
+    public function setCountryCurrency(?string $country_currency): BinResponse
+    {
+        $this->country_currency = $country_currency;
+        return $this;
     }
 
 

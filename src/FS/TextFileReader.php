@@ -20,23 +20,24 @@ class TextFileReader
         $this->handle = new SplFileObject($filename, "r");
     }
 
-    public function __destruct(){
+    public function __destruct()
+    {
         $this->close();
-    }
-
-    public function read(): ?string
-    {
-        return !$this->handle->eof() ? $this->handle->fgets() : null ;
-    }
-
-    public function getRow(): ?string
-    {
-        return rtrim($this->row);
     }
 
     public function close(): void
     {
         $this->handle = null;
+    }
+
+    public function read(): ?string
+    {
+        return !$this->handle->eof() ? $this->handle->fgets() : null;
+    }
+
+    public function getRow(): ?string
+    {
+        return rtrim($this->row);
     }
 
 }
