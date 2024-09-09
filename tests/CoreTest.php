@@ -1,10 +1,11 @@
 <?php
 
-namespace tests;
+namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use \src\Calculate;
 use \src\Core;
+use \src\Calculate;
+
 
 class CoreTest extends TestCase
 {
