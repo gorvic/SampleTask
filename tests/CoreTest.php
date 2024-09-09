@@ -69,7 +69,7 @@ class CoreTest extends TestCase
     public function testProcessTransaction()
     {
         $this->assertIsString(Calculate::processTransaction(
-                json_decode('{"bin":"45717360","amount":"100.00","currency":"EUR"}', true)));
+            json_decode('{"bin":"45717360","amount":"100.00","currency":"EUR"}', true)));
     }
 
     public function testGetEuCommissionAmount()
