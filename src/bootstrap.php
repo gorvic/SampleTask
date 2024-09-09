@@ -1,5 +1,4 @@
 <?php
-die('test');
 use src\Core;
 
 \error_reporting(\E_ALL ^ E_WARNING ^ E_NOTICE);
