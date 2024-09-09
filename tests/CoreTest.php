@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use \src\Core;
 use \src\Calculate;
 
+require_once __DIR__.'/../vendor/autoload.php';
 
 class CoreTest extends TestCase
 {
