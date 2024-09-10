@@ -62,29 +62,29 @@ class CoreTest extends TestCase
 
     public function testCeiling()
     {
-        $this->assertEquals(1.13, Calculate::ceiling(1.123, 2));
-        $this->assertEquals(1.12, Calculate::ceiling(1.12, 2));;
-        $this->assertIsFloat(Calculate::ceiling(1.123, 2));
+        $this->assertEquals(1.13, (new Calculate())->ceiling(1.123, 2));
+        $this->assertEquals(1.12, (new Calculate())->ceiling(1.12, 2));;
+        $this->assertIsFloat((new Calculate())->ceiling(1.123, 2));
     }
 
     public function testProcessTransaction()
     {
-        $this->assertIsString(Calculate::processTransaction(
+        $this->assertIsString((new Calculate())->processTransaction(
             json_decode('{"bin":"45717360","amount":"100.00","currency":"EUR"}', true)));
     }
 
     public function testGetEuCommissionAmount()
     {
-        $this->assertEquals(0.46, Calculate::getCommissionAmount(50, 1.110999, true));
+        $this->assertEquals(0.46, (new Calculate())->getCommissionAmount(50, 1.110999, true));
     }
 
     public function testGetNonEuCommissionAmount()
     {
-        $this->assertEquals(0.91, Calculate::getCommissionAmount(50, 1.110999, false));
+        $this->assertEquals(0.91, (new Calculate())->getCommissionAmount(50, 1.110999, false));
     }
 
     public function testGlobalCalculation()
     {
-        $this->assertEmpty(Calculate::commissions(__DIR__ . '/../input.txt'));
+        $this->assertIsString((new Calculate())->getCommissions(__DIR__ . '/../output.txt'));
     }
 }

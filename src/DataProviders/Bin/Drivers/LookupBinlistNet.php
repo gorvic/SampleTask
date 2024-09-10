@@ -26,7 +26,7 @@ class LookupBinlistNet implements BinDriverInterface
 
     public function request(string $bin): BinResponse
     {
-        $request = (new HttpRequest)->request('GET', str_replace('{BIN_CODE}', $bin, $this->URL_PATTERN));
+        $request = (new HttpRequest())->request('GET', str_replace('{BIN_CODE}', $bin, $this->URL_PATTERN));
         $result = new BinResponse();
         if ($request->isAccepted() && $response = $request->getJsonContent()) {
             $result

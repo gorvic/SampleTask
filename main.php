@@ -6,4 +6,4 @@ require_once 'src/bootstrap.php';
 
 $data_file = $argv[1] ?: 'input.txt';
 
-Calculate::commissions($data_file);
+echo (new Calculate())->getCommissions($data_file);

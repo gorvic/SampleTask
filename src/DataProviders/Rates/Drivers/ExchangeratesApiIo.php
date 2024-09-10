@@ -44,7 +44,7 @@ class ExchangeratesApiIo implements RatesDriverInterface
     {
         $result = new RatesResponse();
 
-        $request = (new HttpRequest)->request('GET', $this->URL);
+        $request = (new HttpRequest())->request('GET', $this->URL);
         // need to check info from a cache
         if ($request->isAccepted() && $response = $request->getJsonContent()) {
             $result
