@@ -2,12 +2,12 @@
 
 namespace FS;
 
+use Exception;
 use SplFileObject;
 
 class TextFileReader
 {
-    private $handle;
-    private ?string $row;
+    private ?SplFileObject $handle;
 
     /**
      * @throws Exception
@@ -15,7 +15,7 @@ class TextFileReader
     public function __construct($filename)
     {
         if (!is_file($filename)) {
-            throw new \Exception("File $filename does not exist");
+            throw new Exception("File $filename does not exist");
         }
         $this->handle = new SplFileObject($filename, "r");
     }
@@ -32,12 +32,7 @@ class TextFileReader
 
     public function read(): ?string
     {
-        return !$this->handle->eof() ? $this->handle->fgets() : null;
-    }
-
-    public function getRow(): ?string
-    {
-        return rtrim($this->row);
+        return !$this->handle->eof() ? rtrim($this->handle->fgets()) : null;
     }
 
 }

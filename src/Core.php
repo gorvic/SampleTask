@@ -4,6 +4,8 @@ namespace src;
 
 use DataProviders\Bin\BinRequest;
 use DataProviders\Rates\RatesRequest;
+use Exception;
+use function getenv;
 
 class Core
 {
@@ -13,24 +15,27 @@ class Core
     private BinRequest $binRequest;
     private RatesRequest $ratesRequest;
 
+    /**
+     * @throws Exception
+     */
     protected function __construct()
     {
         $this->init();
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     private function init(): void
     {
-        $this->environment = \getenv();
+        $this->environment = getenv();
         $this->initConfig();
         $this->initBinRequest();
         $this->initRatesRequest();
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     private function initConfig(): void
     {
@@ -40,10 +45,13 @@ class Core
             ($config = parse_ini_file($conf_fn, true))) {
             $this->config = $config;
         } else {
-            throw new \Exception("Cannot obtain and parse config file.");
+            throw new Exception("Cannot obtain and parse config file.");
         }
     }
 
+    /**
+     * @throws Exception
+     */
     private function initBinRequest(): void
     {
         $driver = $this->config['general']['BIN_DRIVER'];
@@ -51,10 +59,13 @@ class Core
             is_file(__DIR__ . '/DataProviders/Bin/Drivers/' . $driver . '.php')) {
             $this->binRequest = new BinRequest($driver, $this->config[$driver]);
         } else {
-            throw new \Exception("Cannot initialize bin driver.");
+            throw new Exception("Cannot initialize bin driver.");
         }
     }
 
+    /**
+     * @throws Exception
+     */
     private function initRatesRequest(): void
     {
         $driver = $this->config['general']['RATES_DRIVER'];
@@ -62,7 +73,7 @@ class Core
             is_file(__DIR__ . '/DataProviders/Rates/Drivers/' . $driver . '.php')) {
             $this->ratesRequest = new RatesRequest($driver, $this->config[$driver]);
         } else {
-            throw new \Exception("Cannot initialize rates driver.");
+            throw new Exception("Cannot initialize rates driver.");
         }
     }
 
@@ -75,9 +86,12 @@ class Core
         return self::$instance;
     }
 
+    /**
+     * @throws Exception
+     */
     public function __wakeup()
     {
-        throw new \Exception("Cannot unserialize a singleton.");
+        throw new Exception("Cannot unserialize a singleton.");
     }
 
     public function getConfig(?string $section = null): ?array
