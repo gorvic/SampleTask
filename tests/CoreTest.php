@@ -63,7 +63,7 @@ class CoreTest extends TestCase
     public function testCeiling()
     {
         $this->assertEquals(1.13, (new Calculate())->ceiling(1.123, 2));
-        $this->assertEquals(1.12, (new Calculate())->ceiling(1.12, 2));;
+        $this->assertEquals(1.12, (new Calculate())->ceiling(1.12, 2));
         $this->assertIsFloat((new Calculate())->ceiling(1.123, 2));
     }
 

@@ -24,7 +24,7 @@ class BinEmulator implements BinDriverInterface
         ];
 
         $result = new BinResponse();
-        $response = json_decode(array_key_exists($bin, $data) ? $data[$bin] : 'unknown', true);
+        $response = json_decode(array_key_exists($bin, $data) ? $data[$bin] : $data['unknown'], true);
         $result
             ->setScheme($response['scheme'])
             ->setType($response['type'])
